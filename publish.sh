@@ -12,7 +12,7 @@ cd $DIR
 
 function doIt() {
 	echo "Copying dotfiles to ~ ..."
-	rsync --exclude ".DS_Store" --exclude "publish.sh" --exclude ".osx"  -av . ~
+	rsync --exclude ".DS_Store" --exclude "publish.sh" --exclude ".osx"  --exclude ".git" -av . ~
 	if [ -n "$DFREMOTES" ]
 	then
 		local len=${#DFREMOTES[*]}
@@ -21,7 +21,7 @@ function doIt() {
 		while [ $i -lt $len ];
 		do
 			echo "Copying dotfiles to ${DFREMOTES[$i]} ..."
-			rsync --rsh=ssh --progress --exclude ".DS_Store" --exclude "publish.sh" --exclude ".osx" -av . ${DFREMOTES[$i]}
+			rsync --rsh=ssh --progress --exclude ".DS_Store" --exclude "publish.sh" --exclude ".osx" --exclude ".git" -av . ${DFREMOTES[$i]}
 			let i++
 		done
 	else
