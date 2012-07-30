@@ -1,0 +1,12 @@
+# Make nano the default editor
+export EDITOR="nano"
+
+# Larger bash history (default is 500)
+export HISTSIZE=1000
+export HISTFILESIZE=$HISTSIZE
+
+# Don't put duplicate entries in the bash history
+export HISTCONTROL=ignoredups
+
+# Ensure coloured text
+export CLICOLOR=1

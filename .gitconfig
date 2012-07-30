@@ -1,0 +1,44 @@
+[core]
+	editor = nano
+	excludesfile = ~/.gitignore
+[alias]
+	a = add
+	c = commit
+	f = fetch
+	m = merge
+	p = push
+	s = status -s
+	d = diff --patch-with-stat
+	# View the SHA, descripti on, and history graph of the latest 20 commits
+	l = log --pretty=oneline -n 20 --graph
+	# Commit all changes
+	ca = !git add -A && git commit -av
+	# Switch to a branch, creating it if necessary
+	go = checkout -B
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
+[color]
+	# Use colors in Git commands that are capable of colored output when outputting to the terminal
+	ui = auto
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+[merge]
+	# Include summaries of merged commits in newly created merge commit messages
+	log = true
+[branch "master"]
+	# Use `origin` as the default remote on the `master` branch in all cases
+	remote = origin
+	merge = refs/heads/master

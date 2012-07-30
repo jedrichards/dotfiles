@@ -1,0 +1,21 @@
+# Derived/compiled objects
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.swf
+*.pyc
+
+# OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+._*
+Desktop.ini
+.Spotlight-V100
+
+# Dotfiles .personal config options
+.personal

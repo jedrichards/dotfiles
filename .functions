@@ -1,0 +1,125 @@
+# Spawn a simple HTTP server from a directory and opens its URI in a browser.
+# Port number is an optional argument.
+function server {
+    local port="${1:-8000}"
+    open "http://0.0.0.0:${port}/"
+    python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
+}
+
+# Edit the system's hosts file.
+function editHosts {
+	nano /etc/hosts
+}
+
+# Edit Ubuntu's Apache2 conf file.
+function editUbuntuApacheConf {
+	sudo nano /etc/apache2/apache2.conf
+}
+
+# Edit Ubuntu's Apache2 ports conf file.
+function editUbuntuApachePortsConf {
+	sudo nano /etc/apache2/ports.conf
+}
+
+# Edit Ubuntu's PHP5 init file.
+function editUbuntuPHPINI {
+	sudo nano /etc/php5/apache2/php.ini
+}
+
+# Restart Ubuntu's Apache2.
+function restartUbuntuWebServer {
+	sudo /etc/init.d/apache2 restart
+}
+
+# Edit OSX's built-in Apache2 conf file.
+function editOSXApache2Conf {
+	sudo nano /etc/apache2/httpd.conf
+}
+
+# Edit OSX's built-in Apache2 vhosts file.
+function editOSXApache2VHosts {
+	sudo nano /etc/apache2/extra/httpd-vhosts.conf
+}
+
+# Restart OSX's built-in Apache2 and MySQL.
+function restartOSXWebServer {
+	sudo apachectl restart
+	mysql.server restart
+}
+
+# Create a dirctory and enter it.
+function md {
+	mkdir -p "$@" && cd "$@"
+}
+
+# Refresh .bash_profile, run after changes to bash's dotfiles.
+function refreshBash {
+	. ~/.bash_profile
+}
+
+# Show hidden files.
+function showDotFiles {
+	defaults write com.apple.Finder AppleShowAllFiles -bool true && killall Finder
+}
+
+# Hide hidden files.
+function hideDotFiles {
+	defaults write com.apple.Finder AppleShowAllFiles -bool false && killall Finder
+}
+
+# Recursively delete .DS_Store files from the current directory.
+function cleanUp {
+	find . -type f -name '*.DS_Store' -ls -delete
+}
+
+# Print out information about local disk usage.
+function diskUsage {
+	df -h
+}
+
+# Check if a file exists.
+function fileExists {
+	if [ -f $1 ]
+	then
+		echo "1"
+	else
+		echo "0"
+	fi
+}
+
+# Make a file executable.
+function makeExecutable {
+	chmod +x $1
+}
+
+# Safely delete a directory.
+function rmd {
+	rm -riv --preserve-root $1
+}
+
+# Flush the DNS cache.
+# Useful if you can't get to an IP you know should be available
+function flushDNS {
+	sudo killall -HUP mDNSResponder
+}
+
+# Print a list of network IPs.
+function showIPs {
+	ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ && print $1'
+}
+
+# Debug HTTP request/response headers using siege.
+function debugHeaders {
+	local GOT_SIEGE=`cmdExists siege`
+	if [ $GOT_SIEGE -eq "1" ]
+	then
+		siege -g $1
+	else
+		echo "siege command not found"
+	fi
+}
+
+# Check to see if a command exists.
+function cmdExists {
+	type -P $1 &>/dev/null && echo "1" || echo "0"
+}

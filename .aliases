@@ -1,0 +1,37 @@
+# Directory shortcuts
+alias db="cd ~/Documents/Dropbox"
+alias dev="cd ~/Documents/Dropbox/dev"
+alias www="cd /srv/www"
+alias sa="cd /etc/apache2/sites-available"
+
+# Navigation shortcuts
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~"
+alias -- -="cd -"
+
+# Editor shortcuts
+alias s="subl"
+alias sd="subl ."
+alias n="nano"
+
+# Directory listing (different options needed for Linux vs OSX)
+if [ "$TERM" != "dumb" ]
+then
+	if [ $(uname) == "Linux"  ]
+	then
+		alias ls="ls -oa --color=auto"
+   		alias lc="clear; ls"
+ 	else
+   		alias ls="ls -Goa"
+   		alias lc="clear; ls"
+ 	fi
+fi
+
+# Enable aliases to be sudo’ed
+alias sudo="sudo "
+
+# Program shortcuts
+alias g="git"
