@@ -94,7 +94,10 @@ function makeExecutable {
 
 # Safely delete a directory.
 function rmd {
-	rm -riv --preserve-root $1
+	if [ $1 != "/" ]
+	then
+		rm -riv $1
+	fi
 }
 
 # Flush the DNS cache.
