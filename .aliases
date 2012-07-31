@@ -25,7 +25,7 @@ then
 		alias ls="ls -oa --color=auto"
    		alias lc="clear; ls"
  	else
-   		alias ls="ls -Goa"
+   		alias ls="ls -GlAhF"
    		alias lc="clear; ls"
  	fi
 fi
