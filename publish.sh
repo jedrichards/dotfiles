@@ -4,7 +4,7 @@
 # Folder contents will also be copied to remote locations defined in a $DFREMOTES array.
 # Existing files with the same name in destination folders will be clobbered so be careful.
 # Use the -f option to skip the confirmation prompt.
-# You may beed to explicity refresh bash to see changes.
+# You may need to explicity refresh bash to see changes.
 
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 cd $DIR
