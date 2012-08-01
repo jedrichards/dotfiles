@@ -2,7 +2,7 @@
 # Based on http://mths.be/osx
 
 # Apply these settings manually by running:
-# . ./.osx
+# ./.osx
 
 # Menu bar
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
@@ -110,9 +110,6 @@ defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 # Show the ~/Library folder
 chflags nohidden ~/Library
-
-# Enable highlight hover effect for the grid view of a stack (Dock)
-defaults write com.apple.dock mouse-over-hilte-stack -bool true
 
 # Don’t animate opening applications from the Dock
 defaults write com.apple.dock launchanim -bool false
