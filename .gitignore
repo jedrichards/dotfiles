@@ -8,6 +8,9 @@
 *.swf
 *.pyc
 
+# IDE configs
+.idea
+
 # OS generated files
 .DS_Store*
 ehthumbs.db
