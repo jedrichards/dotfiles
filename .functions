@@ -96,7 +96,7 @@ function makeExecutable {
 function rmd {
 	if [ $1 != "/" ]
 	then
-		rm -rv $1
+		rm -r $1
 	fi
 }
 
