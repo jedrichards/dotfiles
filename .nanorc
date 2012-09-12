@@ -1,6 +1,5 @@
 # Options
 set nowrap
-set nonewlines
 set tabsize 4
 
 # HTML colouring
