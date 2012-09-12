@@ -1,5 +1,7 @@
-# Don't wrap text at all
+# Options
 set nowrap
+set nonewlines
+set tabsize 4
 
 # HTML colouring
 syntax "html" "\.htm[l]?$"
