@@ -28,6 +28,7 @@ function doIt() {
 		echo "No remote locations found."
 	fi
 	echo "Publish complete."
+	echo "Refresh your shell and/or run 'source ~/.bash_profile' to see changes."
 }
 
 if [ "$1" == "--force" -o "$1" == "-f" ];
