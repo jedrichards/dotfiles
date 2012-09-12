@@ -42,6 +42,8 @@ export WHITE
 export BOLD
 export RESET
 
+# Add information about the current git branch to the prompt.
+
 function parse_git_dirty() {
 	[[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
@@ -50,4 +52,14 @@ function parse_git_branch() {
 	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
 }
 
-PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$ORANGE\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
+# Use a slightly different colour scheme depending on whether we're on OSX or Linux box.
+# Gives a visual hint when we're ssh-ing into a remote shell.
+
+HOSTCOLOUR=$ORANGE
+
+if [ $(uname) == "Linux"  ]
+then
+	HOSTCOLOUR=$PURPLE
+fi
+
+PS1="\[${BOLD}${MAGENTA}\]\u \[$WHITE\]at \[$HOSTCOLOUR\]\h \[$WHITE\]in \[$GREEN\]\w\[$WHITE\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \" on \")\[$PURPLE\]\$(parse_git_branch)\[$WHITE\]\n\$ \[$RESET\]"
