@@ -29,16 +29,6 @@ Any personal settings (Git configuration email addresses, server IP addresses et
 	# Array of remote servers to publish dotfiles to.
 	DFREMOTES=('user@host:~' 'user@host:~' 'user@host:~')
 
-	# SSH into some server.
-	function someSever {
-		ssh user@host
-	}
-
-	# SSH into some other server.
-	function someOtherServer {
-		ssh user@host
-	}
-
 ### .osx
 
 Copied from mathiasbynen's [mths.be/osx](http://mths.be/osx) file, this isn't a dotfile in the strict sense. It doesn't live in your home directory and run automatically, rather you can manually invoke it whenever you want to apply the OSX settings contained within it. Designed to be used to quickly set some familiar defaults when setting up a new system or user account.
