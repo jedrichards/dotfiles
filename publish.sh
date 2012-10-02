@@ -7,13 +7,16 @@
 # You may need to explicity refresh bash to see changes.
 
 # Discover this script's directory
+
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 cd $DIR
 
 # Source the .personal file to bring in the DFREMOTES array
+
 . ./.personal
 
 # Begin syncing files to various locations
+
 function doIt() {
 	echo "Copying dotfiles to ~ ..."
 	rsync --exclude-from "rsync-excludes.txt" -av . ~
@@ -49,5 +52,6 @@ fi
 unset doIt
 
 # Our git config values from .personal have been overwritten with our GitHub-safe anonymous .gitconfig file so
-# source .personal again to re-rewrite them in. This is scrappy, should think of a better way ...
+# source .personal *again* to re-rewrite them in. This is scrappy, should think of a better way ...
+
 . ./.personal
