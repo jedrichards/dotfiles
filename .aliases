@@ -22,7 +22,7 @@ if [ "$TERM" != "dumb" ]
 then
 	if [ $(uname) == "Linux"  ]
 	then
-		alias ls="ls -oa --color=auto"
+		alias ls="ls -lAhF --color=auto"
    		alias lc="clear; ls"
  	else
    		alias ls="ls -GlAhF"
