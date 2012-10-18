@@ -1,13 +1,3 @@
-# Derived/compiled objects
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-*.swf
-*.pyc
-
 # IDE configs
 .idea
 
