@@ -1,8 +1,17 @@
 # Sensible OSX defaults
 # Based on http://mths.be/osx
 
-# Apply these settings manually by running:
+# Apply these settings manually by invoking this executable:
 # ./.osx
+
+# Ask for the administrator password upfront
+sudo -v
+
+# Set computer name (as done via System Preferences → Sharing)
+sudo scutil --set ComputerName "jedbook"
+sudo scutil --set HostName "jedbook"
+sudo scutil --set LocalHostName "jedbook"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "jedbook"
 
 # Menu bar
 defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
@@ -23,6 +32,9 @@ defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
 # Expand print panel by default
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
 
 # Disable Resume system-wide
 defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
@@ -74,6 +86,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Finder: allow text selection in Quick Look
 defaults write com.apple.finder QLEnableTextSelection -bool true
 
+# Finder: show hidden files by default
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
 # Display full POSIX path as Finder window title
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
@@ -95,6 +110,10 @@ defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
 
 # Show item info below desktop icons
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:showItemInfo true" ~/Library/Preferences/com.apple.finder.plist
+
+# Use list view in all Finder windows by default
+# Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 
 # Enable snap-to-grid for desktop icons
 /usr/libexec/PlistBuddy -c "Set :DesktopViewSettings:IconViewSettings:arrangeBy grid" ~/Library/Preferences/com.apple.finder.plist
@@ -132,4 +151,4 @@ defaults write com.apple.dock autohide -bool true
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
 
-echo "Done. Restart to see all effects.";
+echo "Done, restart to see all effects."

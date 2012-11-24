@@ -1,5 +1,6 @@
 # IDE configs
 .idea
+*.sublime-workspace
 
 # OS generated files
 .DS_Store*
@@ -9,5 +10,5 @@ Thumbs.db
 Desktop.ini
 .Spotlight-V100
 
-# Dotfiles .personal config options
+# Dotfiles .personal
 .personal
