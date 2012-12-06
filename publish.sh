@@ -1,42 +1,43 @@
 #!/bin/bash
 
-# Copy contents of this script's containing folder to ~.
-# Folder contents will also be copied to remote locations defined in a $DFREMOTES array.
-# Existing files with the same name in destination folders will be clobbered so be careful.
-# Use the -f option to skip the confirmation prompt.
-# You may need to explicity refresh bash to see changes.
+# Copy contents of this script's containing folder to ~. Existing files with the same name
+# in ~ will be clobbered so be careful. Use the -f option to skip the confirmation prompt.
+# You should explicity restart your terminal and/or source ~/.bash_profile afterwards.
 
-# Discover this script's directory
+# Discover this script's directory and change into it:
 
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 cd $DIR
 
-# Source the .personal file to bring in the DFREMOTES array
+# This script will optionally rsync dotfiles to remote workstations over ssh if it finds an
+# array of hosts in the ./personal/.servers file. The ./personal folder is kept out of GitHub
+# for obvious reasons.
 
-. ./.personal
+[ -r ./.personal/.servers ] && . ./.personal/.servers
 
-# Begin syncing files to various locations
+# Begin rsyncing dotfiles.
 
 function doIt() {
-	echo "Copying dotfiles to ~ ..."
+	echo "Copying dotfiles to your home directory ..."
 	rsync --exclude-from "rsync-excludes.txt" -av . ~
-	if [ -n "$DFREMOTES" ]
+	if [ -n "$DOTFILESERVERS" ]
 	then
-		local len=${#DFREMOTES[*]}
-		echo "Found ${len} remote location(s)."
+		local len=${#DOTFILESERVERS[*]}
+		echo "Found ${len} remote dotfile location(s)."
 		i=0
 		while [ $i -lt $len ];
 		do
-			echo "Copying dotfiles to ${DFREMOTES[$i]} ..."
-			rsync --rsh=ssh --progress --exclude-from "rsync-excludes.txt" -av . ${DFREMOTES[$i]}
+			echo "Copying dotfiles to ${DOTFILESERVERS[$i]} ..."
+			rsync --rsh=ssh --exclude-from "rsync-excludes.txt" -av . ${DOTFILESERVERS[$i]}
 			let i++
 		done
 	else
-		echo "No remote locations found."
+		echo "No remote dotfile locations found."
 	fi
-	echo "Publish complete."
-	echo "Refresh your shell and/or run 'source ~/.bash_profile' to see changes."
+	echo "Dotfiles published."
+	echo "Now restart your shell and/or invoke '. ~/.bash_profile'."
 }
+
 if [ "$1" == "--force" -o "$1" == "-f" ];
 then
 	doIt
@@ -50,8 +51,3 @@ else
 	fi
 fi
 unset doIt
-
-# Our git config values from .personal have been overwritten with our GitHub-safe anonymous .gitconfig file so
-# source .personal *again* to re-rewrite them in. This is scrappy, should think of a better way ...
-
-. ./.personal

@@ -10,5 +10,5 @@ Thumbs.db
 Desktop.ini
 .Spotlight-V100
 
-# Dotfiles .personal
-.personal
+# Personal dotfiles
+/.personal/

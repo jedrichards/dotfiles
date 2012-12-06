@@ -10,24 +10,46 @@ Dotfiles sit in your home directory and configure your shell environment. Some a
 
 ### Usage
 
-The repo should be cloned to some sensible location on your system, for example `~/dotfiles/`. The included `publish.sh` script can then used to copy the dotfiles to your home directory (and optionally the home directories of any remote servers you also work on). Be careful, the script will clobber any existing files in your home directory that have the same name. Invoke `publish.sh` like so:
+The repo should be cloned to some sensible location on your system, for example `~/dev/dotfiles/`. The included `publish.sh` script can then used to copy the dotfiles to your home directory. Be careful, the script will clobber any existing files in your home directory that have the same name. Invoke `publish.sh` like so:
 
 	./publish.sh
 
-You may need to close and re-open your shell window to see all the changes and/or run a command like `source ~/.bash_profile`.
+You should restart your shell once publishing has completed.
 
-### .personal
+### Personal settings
 
-Any personal settings (Git configuration email addresses, server IP addresses etc.) probably don't belong in a public GitHub repo. I've put these in a `.personal` file which isn't in the Git repo but `.bash_profile` will pull it in if it exists. Amongst other things it defines a `$DFREMOTES` array which lists remote servers that these dotfiles should also be copied to when `publish.sh` is invoked. Mine looks a bit like this:
+The `.bash_profile` will attempt to source all the dotfiles in this repo along with a number of files that aren't. In particular:
 
-	# Git config.
+	.personal/.path
+	.personal/.git-config
+	.personal/.misc
+	.personal/.servers
+
+I use these files to store any settings that may contain sensitive information. For example personal email addresses, server IPs and whatnot.
+
+#### `.personal/.path`
+
+Contains additions to my $PATH only relevant to my environment.
+
+#### `.personal/.git-config`
+
+Contains personal git configuration settings. Contents could look a bit like this: 
+
 	git config --global user.name "username"
 	git config --global user.email "email-address"
 	git config --global github.user "github-username"
-	git config --global github.token "github-token"
 
-	# Array of remote servers to publish dotfiles to.
-	DFREMOTES=('user@host:~' 'user@host:~' 'user@host:~')
+#### `.personal/.misc`
+
+Contains various personal settings and functions, e.g. shortcuts for ssh-ing into often used remote servers.	
+
+#### `.personal/.servers`
+
+The `publish.sh` script is also capable of rsyncing these dotfiles to remote servers. This is achieved by defining an array of remote hosts in a `.personal/.servers` file. The contents could look a bit like this:
+
+	export DOTFILESERVERS=('user@0.0.0.0:~')
+
+If the `.servers` file is present and it contains a valid DOTFILESERVERS array then `publish.sh` will pick it up and use it.
 
 ### .osx
 
