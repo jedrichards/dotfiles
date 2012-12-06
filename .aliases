@@ -1,9 +1,3 @@
-# Directory shortcuts
-alias db="cd ~/Documents/Dropbox"
-alias dev="cd ~/Documents/Dropbox/dev"
-alias www="cd /srv/www"
-alias sa="cd /etc/apache2/sites-available"
-
 # Navigation shortcuts
 alias ..="cd .."
 alias ...="cd ../.."
@@ -13,11 +7,9 @@ alias ~="cd ~"
 alias -- -="cd -"
 
 # Editor shortcuts
-alias s="subl"
 alias sd="subl ."
-alias n="nano"
 
-# Directory listing (different options needed for Linux vs OSX)
+# Directory listing (different options needed for GNU vs OSX)
 if [ "$TERM" != "dumb" ]
 then
 	if [ $(uname) == "Linux"  ]
