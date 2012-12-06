@@ -1,13 +1,83 @@
-function parse_git_dirty() {
-	[[ $(git status 2> /dev/null | tail -n1) != *"working directory clean"* ]] && echo "*"
-}
+#!/bin/bash
 
-function parse_git_branch() {
-	git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1$(parse_git_dirty)/"
-}
+# Copied with thanks from https://github.com/necolas/dotfiles
 
-if [[ $OSTYPE == "darwin12" ]]; then
-    export PS1="\[$(tput setaf 6)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 6)\]\h\[$(tput setaf 7)\]:\[$(tput setaf 6)\]\w\[$(tput setaf 3)\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \">\")\$(parse_git_branch)\[$(tput setaf 7)\]\n\\$ \[$(tput sgr0)\]"
-else
-    export PS1="\[$(tput setaf 1)\]\u\[$(tput setaf 7)\]@\[$(tput setaf 1)\]\h\[$(tput setaf 7)\]:\[$(tput setaf 1)\]\w\[$(tput setaf 3)\]\$([[ -n \$(git branch 2> /dev/null) ]] && echo \">\")\$(parse_git_branch)\[$(tput setaf 7)\]\n\\$ \[$(tput sgr0)\]"
+if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+    export TERM='xterm-256color'
 fi
+
+tput sgr 0 0
+
+BOLD=$(tput bold)
+RESET=$(tput sgr0)
+RED=$(tput setaf 1)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+YELLOW=$(tput setaf 3)
+
+style_user="\[${RESET}${CYAN}\]"
+style_host="\[${RESET}${RED}\]"
+style_path="\[${RESET}${CYAN}\]"
+style_chars="\[${RESET}${WHITE}\]"
+style_branch="${YELLOW}"
+
+if [[ "$OSTYPE" ==  "darwin12" ]]; then
+    # Is OSX
+    style_host="\[${CYAN}\]"
+fi
+
+if [[ "$USER" == "root" ]]; then
+    # Logged in as root
+    style_user="\[${RED}\]"
+fi
+
+function is_git_repo {
+    $(git rev-parse --is-inside-work-tree &> /dev/null)
+}
+
+function get_git_branch {
+    local branch_name
+    branch_name=$(git symbolic-ref --quiet --short HEAD 2> /dev/null) ||
+    branch_name=$(git rev-parse --short HEAD 2> /dev/null) ||
+    branch_name="(unknown)"
+    printf $branch_name
+}
+
+function prompt_git {
+    local git_info git_state uc us ut st
+    if ! is_git_repo; then
+        return 1
+    fi
+    git_info=$(get_git_branch)
+    # Check for uncommitted changes in the index
+    if ! $(git diff --quiet --ignore-submodules --cached); then
+        uc="+"
+    fi
+    # Check for unstaged changes
+    if ! $(git diff-files --quiet --ignore-submodules --); then
+        us="!"
+    fi
+    # Check for untracked files
+    if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        ut="?"
+    fi
+    # Check for stashed files
+    if $(git rev-parse --verify refs/stash &>/dev/null); then
+        st="$"
+    fi
+    git_state=$uc$us$ut$st
+    # Combine the branch name and state information
+    if [[ $git_state ]]; then
+        git_info="$git_info[$git_state]"
+    fi
+    printf "${WHITE}>${style_branch}${git_info}"
+}
+
+PS1="${style_user}\u"
+PS1+="${style_chars}@"
+PS1+="${style_host}\h"
+PS1+="${style_chars}:"
+PS1+="${style_path}\w"
+PS1+="\$(prompt_git)"
+PS1+="\n"
+PS1+="${style_chars}\$ \[${RESET}\]"
