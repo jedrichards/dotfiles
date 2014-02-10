@@ -32,3 +32,8 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup
 # Faster npm for europeans (cant't use for publishing)
 
 command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu"
+
+# Git
+
+alias gs="git status -s"
+alias gl="git log --format='%h %Cred%ar%Creset %Cgreen%s' --graph"
