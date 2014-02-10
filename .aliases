@@ -1,29 +1,34 @@
-# Navigation shortcuts
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ~="cd ~"
-alias -- -="cd -"
+# Better default ls
+#   -l Long format with details
+#   -A Almost all (include hidden, excluse . and ..)
+#   -h Human readable file sizes
+#   -G or --color-auto Colourise output on Linux and OSX
+#   -F Classify entries with one of the following types
+#     * Executable
+#     / Directory
+#     @ Symlink
+#     | Pipe
+#     = Socket
 
-# Editor shortcuts
-alias sd="subl ."
-
-# Directory listing (different options needed for GNU vs OSX)
 if [ "$TERM" != "dumb" ]
 then
 	if [ $(uname) == "Linux"  ]
 	then
 		alias ls="ls -lAhF --color=auto"
-   		alias lc="clear; ls"
  	else
    		alias ls="ls -GlAhF"
-   		alias lc="clear; ls"
  	fi
 fi
 
-# Enable aliases to be sudo’ed
-alias sudo="sudo "
+# Navigation
 
-# Program shortcuts
-alias g="git"
+alias cdwork="cd ~/work"
+alias cddb="cd ~/Documents/Dropbox"
+
+# Update OSX, Homebrew, npm and their installed packages
+
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g;'
+
+# Faster npm for europeans (cant't use for publishing)
+
+command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu"

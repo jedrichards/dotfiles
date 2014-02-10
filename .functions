@@ -1,22 +1,13 @@
-# Spawn a HTTP server
+# Spawn a HTTP server in the current directory. Port defaults to 8000.
+
 function server {
     local port="${1:-8000}"
-    open "http://0.0.0.0:${port}/"
-    python -c $'import SimpleHTTPServer;\nmap = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\nmap[""] = "text/plain";\nfor key, value in map.items():\n\tmap[key] = value + ";charset=UTF-8";\nSimpleHTTPServer.test();' "$port"
-}
-
-# Create a dirctory and enter it.
-function md {
-	mkdir -p "$@" && cd "$@"
+    python -m SimpleHTTPServer [port]
+    open "http://127.0.0.1:${port}/"
 }
 
 # Recursively delete .DS_Store files from the current directory.
-function cleanUp {
-	find . -type f -name '*.DS_Store' -ls -delete
-}
 
-# Flush the DNS cache.
-# Useful if you can't get to an IP you know should be available
-function flushDNS {
-	sudo killall -HUP mDNSResponder
+function clean_ds_store {
+	find . -type f -name '*.DS_Store' -ls -delete
 }
