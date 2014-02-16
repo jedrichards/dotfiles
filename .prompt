@@ -46,7 +46,7 @@ prompt_git() {
 
         # [ -n "$s" ] && s=" [$s]"
 
-        printf "%s" "$1$branchName$s"
+        printf "%s" " $1$branchName$s"
     else
         return
     fi
@@ -106,9 +106,9 @@ set_prompts() {
     PS1="\[\033]0;\w\007\]"
 
     PS1+="\[$orange\]✣\[$reset\] "
-    PS1+="\[$green\]\W\[$reset\] " # working directory
-    PS1+="\[$cyan\]\$(prompt_git)\[$reset\]" # git repository details
-    PS1+="\[$white\] : "
+    PS1+="\[$green\]\W\[$reset\]" # working directory
+    PS1+="\[$cyan\]\$(prompt_git)\[$reset\] " # git repository details
+    PS1+="\[$white\]: "
 
     export PS1
 }
