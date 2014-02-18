@@ -35,5 +35,6 @@ command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.e
 
 # Git
 
-alias gs="git status -s"
+alias gs="git status -s -b"
 alias gl="git log --format='%h %Cred%ar%Creset %Cgreen%s' --graph"
+alias gb="git branch --color -vv"
