@@ -60,10 +60,6 @@ sudo -v
 
     sudo nvram SystemAudioVolume=" "
 
-    # Disable Notification Center and remove the menu bar icon
-
-    launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
-
     # Finder: disable window animations and Get Info animations
 
     defaults write com.apple.finder DisableAllAnimations -bool true
