@@ -26,7 +26,3 @@ export PATH=/usr/local/bin:$PATH
 # Make sure global npm binaries are available
 
 export PATH=/usr/local/share/npm/bin:$PATH
-
-# Point to a local Docker host by default
-
-export DOCKER_HOST=tcp://

@@ -105,7 +105,7 @@ set_prompts() {
     # set the terminal title to the current working directory
     PS1="\[\033]0;\w\007\]"
 
-    PS1+="\[$orange\]✣\[$reset\] "
+    PS1+="\[$orange\]∴\[$reset\] "
     PS1+="\[$green\]\W\[$reset\]" # working directory
     PS1+="\[$cyan\]\$(prompt_git)\[$reset\] " # git repository details
     PS1+="\[$white\]: "
