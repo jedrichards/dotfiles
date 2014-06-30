@@ -52,7 +52,7 @@ prompt_git() {
 }
 
 set_prompts() {
-    PS1="\[\e[0;31m\]∴ \[\e[0;36m\]\W \[\e[0;37m\]\$(prompt_git)\[\e[0m\]\n"
+    PS1="\[\e[0;31m\]∴ \[\e[0;34m\]\W \[\e[0;37m\]\$(prompt_git)\[\e[0m\]\n"
     export PS1
 }
 
