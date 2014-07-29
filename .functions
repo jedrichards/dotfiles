@@ -2,8 +2,8 @@
 
 function server {
     local port="${1:-8000}"
-    python -m SimpleHTTPServer [port]
-    open "http://127.0.0.1:${port}/"
+    sleep 1 && open "http://127.0.0.1:${port}/" &
+    python -m SimpleHTTPServer $port
 }
 
 # Recursively delete .DS_Store files from the current directory.
