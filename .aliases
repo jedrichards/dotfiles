@@ -20,21 +20,9 @@ then
  	fi
 fi
 
-# Navigation
-
-alias cdwork="cd ~/work"
-alias cddb="cd ~/Documents/Dropbox"
-
-# Update OSX, Homebrew, npm and their installed packages
-
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm update npm -g; npm update -g;'
-
-# Faster npm for europeans (cant't use for publishing)
-
-command -v npm > /dev/null && alias npme="npm --registry http://registry.npmjs.eu"
-
 # Git
 
 alias gs="git status -s -b"
 alias gl="git log --format='%h %Cred%ar%Creset %Cgreen%s' --graph"
 alias gb="git branch --color -vv"
+alias grd="git fetch origin -p && git checkout develop && git reset --hard origin/develop"

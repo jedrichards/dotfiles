@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Thanks to:
 # https://github.com/necolas/dotfiles
 
 prompt_git() {

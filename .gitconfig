@@ -1,6 +1,8 @@
 [core]
 	editor = nano
 	excludesfile = ~/.gitignore
+	# http://www.git-tower.com/blog/make-git-rebase-safe-on-osx
+	trustctime = false
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
@@ -20,9 +22,8 @@
 [merge]
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
-[branch "master"]
-	# Use `origin` as the default remote on the `master` branch in all cases
-	remote = origin
-	merge = refs/heads/master
 [push]
 	default = simple
+[diff]
+	# Detect copies as well as renames
+	renames = copies
