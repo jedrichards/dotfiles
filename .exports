@@ -26,13 +26,3 @@ export PATH=/usr/local/bin:$PATH
 # Make sure global npm binaries are available
 
 export PATH=/usr/local/share/npm/bin:$PATH
-
-# Setup virtualenvwrapper
-
-# export WORKON_HOME=$HOME/.virtualenvs
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# Export clang flags so Python pip installs don't fail
-
-# export CFLAGS=-Qunused-arguments
-# export CPPFLAGS=-Qunused-arguments

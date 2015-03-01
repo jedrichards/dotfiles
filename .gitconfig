@@ -1,3 +1,18 @@
+[alias]
+	# Readable concise status
+	s = status -s -b
+	# Readble pretty logs
+	l = log --format='%h %Cred%ar%Creset %Cgreen%s' --graph
+	# Fetch origin, checkout develop and reset local develop to origin's develop
+	rsd = !"git fetch origin -p && git checkout develop && git reset --hard origin/develop"
+	# Fetch origin and rebase the current branch against origin's develop
+	rbd = !"git fetch origin -p && git rebase origin/develop"
+	# Fetch origin, checkout master and reset local master to origin's master
+	rsm = !"git fetch origin -p && git checkout master && git reset --hard origin/master"
+	# Checkout a new branch in the format jed/{feature-name}
+	nf = "!f() { git checkout -b \"jed/$1\" 2> /dev/null || git checkout \"jed/$1\"; }; f"
+	# Delete all local branches that have been merged with master
+	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 [core]
 	editor = nano
 	excludesfile = ~/.gitignore

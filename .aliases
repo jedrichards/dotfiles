@@ -1,4 +1,4 @@
-# Better default ls
+# Nice ls
 #   -l Long format with details
 #   -A Almost all (include hidden, excluse . and ..)
 #   -h Human readable file sizes
@@ -9,20 +9,13 @@
 #     @ Symlink
 #     | Pipe
 #     = Socket
+alias ls="ls -GlAhF"
 
-if [ "$TERM" != "dumb" ]
-then
-	if [ $(uname) == "Linux"  ]
-	then
-		alias ls="ls -lAhF --color=auto"
- 	else
-   		alias ls="ls -GlAhF"
- 	fi
-fi
+# Flush DNS cache
+alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
 
-# Git
+# Recursively delete .DS_Store files
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
-alias gs="git status -s -b"
-alias gl="git log --format='%h %Cred%ar%Creset %Cgreen%s' --graph"
-alias gb="git branch --color -vv"
-alias grd="git fetch origin -p && git checkout develop && git reset --hard origin/develop"
+# Lock the screen
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
