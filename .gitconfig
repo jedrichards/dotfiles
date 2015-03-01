@@ -13,6 +13,8 @@
 	nf = "!f() { git checkout -b \"jed/$1\" 2> /dev/null || git checkout \"jed/$1\"; }; f"
 	# Delete all local branches that have been merged with master
 	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# Amend the previous commit
+	amend = !"git add -A && git commit --amend --no-edit"
 [core]
 	editor = nano
 	excludesfile = ~/.gitignore
