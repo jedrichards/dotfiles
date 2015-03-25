@@ -19,3 +19,6 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 
 # Lock the screen
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# Use hub https://hub.github.com
+eval "$(hub alias -s)"
