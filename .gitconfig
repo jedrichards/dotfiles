@@ -17,6 +17,10 @@
 	amend = !"git add -A && git commit --amend --no-edit"
 	# Commit fixes related to lint failures
 	lint = !"git add -A && git commit -m \"Lint\""
+	# Pull request with hub
+	pr = !"hub pull-request"
+	# Open an issue
+	i = !"hub browse -- issues/$1"
 [core]
 	editor = nano
 	excludesfile = ~/.gitignore
