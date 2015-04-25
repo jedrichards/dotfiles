@@ -6,15 +6,19 @@ Inspired and in many cases shamelessly copy and pasted from [dotfiles.github.com
 
 ### Usage
 
-The repo should be cloned to some sensible location on your system, for example `~/work/dotfiles/`. The included `publish.sh` script can then used to copy the dotfiles to your home directory. Be careful, the script will clobber any existing files in your home directory that have the same name.
+The repo should be cloned to some sensible location on your system, for example `~/work/dotfiles/`. To following command can them be used to copy these dot files to your home directory:
+
+```
+$ ./publish.sh
+```
 
 You should restart your shell once publishing has completed.
 
+> Be careful, the script will clobber any existing files in your home directory that have the same name.
+
 ### Personal settings
 
-`.bash_profile` will attempt to source `.prompt`, `.aliases` and `.exports`, and also a file that isn't checked into source control `.extras`.
-
-I use this file to store any settings that may contain sensitive information.
+`.bash_profile` will attempt to source `.extras`, a file that isn't checked into source control. I use this file to store any personal or sensitive settings. If you have any such settings feel free to create a `.extras` file and put them in there.
 
 ### .osx
 
