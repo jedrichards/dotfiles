@@ -22,3 +22,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Use hub https://hub.github.com
 eval "$(hub alias -s)"
+
+# iOS Simulator
+alias iossim="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
