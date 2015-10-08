@@ -11,8 +11,8 @@
 	rsm = !"git fetch origin -p && git checkout master && git reset --hard origin/master"
 	# Checkout a new branch in the format jed/{feature-name}
 	nf = "!f() { git checkout -b \"jed/$1\" 2> /dev/null || git checkout \"jed/$1\"; }; f"
-	# Delete all local branches that have been merged with master
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+	# Reset to develop and delete all of my feature branches that have been merged
+	tidy = "!git rsd && git branch --merged HEAD | grep jed/ | xargs -n 1 git branch -d"
 	# Amend the previous commit
 	amend = !"git add -A && git commit --amend --no-edit"
 	# Commit fixes related to lint failures
