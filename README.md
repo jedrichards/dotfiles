@@ -8,19 +8,19 @@ Inspired and in many cases shamelessly copy and pasted from [dotfiles.github.com
 
 The repo should be cloned to some sensible location on your system, for example `~/work/dotfiles/`. To following command can them be used to copy these dot files to your home directory:
 
-```
+```sh
 $ ./publish.sh
 ```
 
-You should restart your shell once publishing has completed.
+This will interactively copy each file one-by-one asking permission each time any existing file will be overwritten. You should restart your shell once publishing has completed.
 
-> Be careful, the script will clobber any existing files in your home directory that have the same name.
+### Secrets
 
-### Personal settings
+Some settings are personal, secret or otherwise not appropriate for putting in a public repo. Such settings could include but are not limited to Git username and email config settings or starting and configuring tools particular to your system.
 
-`.bash_profile` will attempt to source `.extras`, a file that isn't checked into source control. I use this file to store any personal or sensitive settings. If you have any such settings feel free to create a `.extras` file and put them in there.
+If present, the publish script will attempt to copy a file called `secrets` to `~/.secrets`. This file is ignored from this repo, so if you want to use this feature then manually add the file.
 
-### .osx
+### osx
 
 Copied from mathiasbynen's [mths.be/osx](http://mths.be/osx) file, this isn't a dotfile in the strict sense. It doesn't live in your home directory and run automatically, rather you can manually invoke it whenever you want to apply the OSX settings contained within it. Designed to be used to quickly set some familiar defaults when setting up a new system or user account.
 

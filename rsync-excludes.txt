@@ -1,6 +1,0 @@
-.DS_Store
-publish.sh
-.osx
-.git
-README.md
-rsync-excludes.txt
