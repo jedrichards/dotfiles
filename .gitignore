@@ -1,8 +1,2 @@
-.DS_Store*
-ehthumbs.db
-Thumbs.db
-._*
-Desktop.ini
-.Spotlight-V100
-*.pyc
-.extras
+# Exclude a secrets file
+secrets
