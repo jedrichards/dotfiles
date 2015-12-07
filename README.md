@@ -6,7 +6,7 @@ Inspired and in many cases shamelessly copy and pasted from [dotfiles.github.com
 
 ### Usage
 
-The repo should be cloned to some sensible location on your system, for example `~/work/dotfiles/`. To following command can them be used to copy these dot files to your home directory:
+The repo should be cloned to some sensible location on your system, for example `~/work/dotfiles/`. The following command can them be used to copy these dot files to your home directory:
 
 ```sh
 $ ./publish.sh
