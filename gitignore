@@ -10,8 +10,5 @@ Desktop.ini
 *.pyc
 
 # Files that can leak creds and private data
-.npmrc
 .netrc
 .ssh
-.muttrc
-.gitconfig
