@@ -10,7 +10,7 @@
 	# Fetch origin, checkout master and reset local master to origin's master
 	rsm = !"git fetch origin -p && git checkout master && git reset --hard origin/master"
 	# Fetch origin and rebase the current branch against origin's master
-	rbd = !"git fetch origin -p && git rebase origin/master"
+	rbm = !"git fetch origin -p && git rebase origin/master"
 	# Checkout a new branch in the format jed/{feature-name}
 	nf = "!f() { git checkout -b \"jed/$1\" 2> /dev/null || git checkout \"jed/$1\"; }; f"
 	# Reset to develop and delete all of my feature branches that have been merged
