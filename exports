@@ -13,9 +13,3 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help"
 
 # Ensure coloured text on OSX
 export CLICOLOR=1
-
-# Give priority to brews over system binaries
-export PATH=/usr/local/bin:$PATH
-
-# Make sure global npm binaries are available
-export PATH=/usr/local/share/npm/bin:$PATH

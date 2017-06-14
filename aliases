@@ -1,24 +1,8 @@
-# Nice ls
-#   -l Long format with details
-#   -A Almost all (include hidden, excluse . and ..)
-#   -h Human readable file sizes
-#   -G or --color-auto Colourise output on Linux and OSX
+#   -A Almost all (include hidden, exclude . and ..)
 #   -F Classify entries with one of the following types
 #     * Executable
 #     / Directory
 #     @ Symlink
 #     | Pipe
 #     = Socket
-alias ls="ls -GlAhF"
-
-# Flush DNS cache
-alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
-
-# Recursively delete .DS_Store files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
-
-# Lock the screen
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
-# iOS Simulator
-alias iossim="open /Applications/Xcode.app/Contents/Developer/Applications/iOS\ Simulator.app"
+alias ls="ls -AF"

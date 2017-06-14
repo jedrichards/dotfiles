@@ -17,22 +17,22 @@ prompt_git() {
 
             # check for uncommitted changes in the index
             if ! $(git diff --quiet --ignore-submodules --cached); then
-                s="$s+";
+                s="$s 🚧";
             fi
 
             # check for unstaged changes
             if ! $(git diff-files --quiet --ignore-submodules --); then
-                s="$s!";
+                s="$s 💎";
             fi
 
             # check for untracked files
             if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-                s="$s?";
+                s="$s ❓";
             fi
 
             # check for stashed files
             if $(git rev-parse --verify refs/stash &>/dev/null); then
-                s="$s$";
+                s="$s 💰";
             fi
 
         fi
@@ -44,14 +44,14 @@ prompt_git() {
                       git rev-parse --short HEAD 2> /dev/null || \
                       printf "(unknown)")"
 
-        printf "%s" "($1$branchName$s)"
+        printf "%s" "$1$branchName$s"
     else
         return
     fi
 }
 
 set_prompts() {
-    PS1="\[\e[0;31m\]∴ \[\e[0;34m\]\W \[\e[0;37m\]\$(prompt_git)\[\e[0m\]\n"
+    PS1="☠️  \W \[\e[0;90m\]\$(prompt_git)\[\e[0m\]\n"
     export PS1
 }
 
