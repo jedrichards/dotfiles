@@ -3,27 +3,27 @@
 	s = status -s -b
 	# Readble pretty logs
 	l = log --format='%h %Cred%ar%Creset %Cgreen%s' --graph
+	# Show the diff between the latest commit and the current state
+	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+	# Fetch origin, and hard reset current branch to the remote version
+	rsc = !"git fetch origin -p && git reset --hard origin/$(git symbolic-ref --short -q HEAD)"
 	# Fetch origin, checkout develop and reset local develop to origin's develop
 	rsd = !"git fetch origin -p && git checkout develop && git reset --hard origin/develop"
-	# Fetch origin and rebase the current branch against origin's develop
-	rbd = !"git fetch origin -p && git rebase origin/develop"
 	# Fetch origin, checkout master and reset local master to origin's master
 	rsm = !"git fetch origin -p && git checkout master && git reset --hard origin/master"
-	# Fetch origin and rebase the current branch against origin's master
-	rbm = !"git fetch origin -p && git rebase origin/master"
-	# Checkout a new branch in the format jed/{feature-name}
-	nf = "!f() { git checkout -b \"jed/$1\" 2> /dev/null || git checkout \"jed/$1\"; }; f"
-	# Reset to develop and delete all of my feature branches that have been merged
-	tidy = "!git rsd && git branch --merged HEAD | grep jed/ | xargs -n 1 git branch -d"
-	# Amend the previous commit
+	# Amend the previous commit with all currently staged and unstaged changes
 	amend = !"git add -A && git commit --amend --no-edit"
-	# Commit fixes related to lint failures
-	lint = !"git add -A && git commit -m \"Lint\""
+	# Show verbose output about tags, branches or remotes
+	tags = tag -l
+	branches = branch -a
+	remotes = remote -v
 [core]
 	editor = nano
 	excludesfile = ~/.gitignore
 	# http://www.git-tower.com/blog/make-git-rebase-safe-on-osx
 	trustctime = false
+	# https://git-scm.com/docs/git-update-index#_untracked_cache
+	untrackedCache = true
 [color]
 	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
