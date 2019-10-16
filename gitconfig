@@ -2,7 +2,7 @@
 	# Readable concise status
 	s = status -s -b
 	# Readble pretty logs
-	l = log --format='%h %Cred%ar%Creset %Cgreen%s' --graph
+	l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%ae>%Creset' --abbrev-commit --show-linear-break=~
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 	# Fetch origin, and hard reset current branch to the remote version
@@ -13,6 +13,8 @@
 	rsm = !"git fetch origin -p && git checkout master && git reset --hard origin/master"
 	# Amend the previous commit with all currently staged and unstaged changes
 	amend = !"git add -A && git commit --amend --no-edit"
+	# Update submodules
+	subs = submodule update --init --recursive
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
