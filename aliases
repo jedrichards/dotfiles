@@ -1,8 +1,0 @@
-#   -A Almost all (include hidden, exclude . and ..)
-#   -F Classify entries with one of the following types
-#     * Executable
-#     / Directory
-#     @ Symlink
-#     | Pipe
-#     = Socket
-alias ls="ls -AF"

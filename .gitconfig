@@ -21,13 +21,9 @@
 	remotes = remote -v
 [core]
 	editor = nano
-	excludesfile = ~/.gitignore
-	# http://www.git-tower.com/blog/make-git-rebase-safe-on-osx
 	trustctime = false
-	# https://git-scm.com/docs/git-update-index#_untracked_cache
 	untrackedCache = true
 [color]
-	# Use colors in Git commands that are capable of colored output when outputting to the terminal
 	ui = auto
 [color "branch"]
 	current = yellow reverse
@@ -43,10 +39,11 @@
 	changed = green
 	untracked = cyan
 [merge]
-	# Include summaries of merged commits in newly created merge commit messages
 	log = true
 [push]
 	default = simple
 [diff]
-	# Detect copies as well as renames
 	renames = copies
+[user]
+	name = jedrichards
+	email = jedrichards@gmail.com

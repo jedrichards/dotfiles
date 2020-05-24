@@ -1,27 +1,21 @@
 # dotfiles
 
-A selection of personal dotfiles designed for OSX and Ubuntu.
-
-Inspired and in many cases shamelessly copy and pasted from [dotfiles.github.com](http://dotfiles.github.com/), especially [github.com/mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles).
+A selection of personal dotfiles designed for zsh on macOS Catalina and later.
 
 ### Usage
 
-The repo should be cloned to some sensible location on your system, for example `~/work/dotfiles/`. The following command can them be used to copy these dot files to your home directory:
+Clone the repo anywhere on your system, then point to its location in your `~/.zshenv` file.
 
-```sh
-$ ./publish.sh
+```
+ZDOTDIR=/path/to/this/repo
 ```
 
-This will interactively copy each file one-by-one asking permission each time any existing file will be overwritten. You should restart your shell once publishing has completed.
+### Recommendations
 
-### Secrets
+If you're missing plugins, dependencies or recommended files then you'll be prompted to fix these when you open a new shell.
 
-Some settings are personal, secret or otherwise not appropriate for putting in a public repo. Such settings could include but are not limited to Git username and email config settings or starting and configuring tools particular to your system.
+Current recommendations:
 
-If present, the publish script will attempt to copy a file called `secrets` to `~/.secrets`. This file is ignored from this repo, so if you want to use this feature then manually add the file.
-
-### osx
-
-Copied from mathiasbynen's [mths.be/osx](http://mths.be/osx) file, this isn't a dotfile in the strict sense. It doesn't live in your home directory and run automatically, rather you can manually invoke it whenever you want to apply the OSX settings contained within it. Designed to be used to quickly set some familiar defaults when setting up a new system or user account.
-
-	./.osx
+- A `.personal` file for personal settings like Git config
+- [NVM](https://github.com/lukechilds/zsh-nvm)
+- [Pure Prompt](https://github.com/sindresorhus/pure)

@@ -1,2 +1,1 @@
-# Exclude a secrets file
-secrets
+.personal
