@@ -2,7 +2,7 @@
 alias ls="ls -GlAhF"
 
 # Symlink gitconfig
-ln -sf "$HOME/Repos/dotfiles/.gitconfig" "$HOME/.gitconfig"
+ln -sf "$ZDOTDIR/.gitconfig" "$HOME/.gitconfig"
 
 # History
 export HISTFILE="$HOME/.zsh_history"
@@ -25,13 +25,17 @@ setopt HIST_NO_STORE             # Don't store history commands
 export PATH=/usr/local/bin:$PATH # Prioritise brews
 export EDITOR="nano"
 
+# Shell completions
+compaudit | xargs chmod g-w # Supress insecure directory warnings from brew
+autoload -Uz compinit && compinit # Enable zsh completions
+
 # Personal settings
 PERSONAL="$ZDOTDIR/.personal"
 if [ -f "$PERSONAL" ];
 then
     source "$PERSONAL"
 else
-    echo "\nRecommendation: Create a personal file at $PERSONAL to contain personal settings. Example contents:"
+    echo "\nRecommendation: Create a personal file at $PERSONAL to contain anypersonal settings. Example contents:"
     echo ""
     echo "  git config --global user.name \"<github username>\""
     echo "  git config --global user.email \"<github email>\""
@@ -49,13 +53,10 @@ else
     echo "\nRecommendation: Install zsh-nvm at $ZSH_NVM"
 fi
 
-# Pure prompt
-PURE="$HOME/Repos/pure"
-if [ -d "$PURE" ];
+# Starship
+if [ -x "$(command -v starship)" ];
 then
-    fpath+="$PURE"
-    autoload -U promptinit; promptinit
-    prompt pure
+    eval "$(starship init zsh)"
 else
-    echo "\nRecommendation: Install Pure Prompt at $PURE"
+    echo "\nRecommendation: Install Starship"
 fi
