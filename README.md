@@ -17,5 +17,5 @@ If you're missing plugins, dependencies or recommended files then you'll be prom
 Current recommendations:
 
 - A `.personal` file for personal settings like Git config
-- [NVM](https://github.com/lukechilds/zsh-nvm)
-- [Pure Prompt](https://github.com/sindresorhus/pure)
+- [zsh-nvm](https://github.com/lukechilds/zsh-nvm)
+- [Starship](https://starship.rs)
