@@ -26,8 +26,7 @@ export PATH=/usr/local/bin:$PATH # Prioritise brews
 export EDITOR="nano"
 
 # Shell completions
-compaudit | xargs chmod g-w # Supress insecure directory warnings
-autoload -Uz compinit && compinit # Enable zsh completions
+autoload -Uz compinit && compinit -d "$HOME/.zcompdump" # Enable zsh completions
 
 # Personal settings
 PERSONAL="$ZDOTDIR/.personal"
@@ -41,10 +40,10 @@ else
     echo "  git config --global user.email \"<github email>\""
 fi
 
-REPOS_DIR="$Home/Repos" # Directory where Git-based plugins should be cloned into
+ZPLUGINSDIR="$ZDOTDIR/.." # Directory where Git-based plugins should be cloned to
 
 # Autosuggestions
-AUTOSUGGESTIONS="$REPOS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+AUTOSUGGESTIONS="$ZPLUGINSDIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 if [ -f "$AUTOSUGGESTIONS" ];
 then
     export ZSH_AUTOSUGGEST_USE_ASYNC=true
@@ -54,11 +53,11 @@ else
 fi
 
 # NVM
-ZSH_NVM="$REPOS_DIR/zsh-nvm/zsh-nvm.plugin.zsh"
+ZSH_NVM="$ZPLUGINSDIR/zsh-nvm/zsh-nvm.plugin.zsh"
 if [ -f "$ZSH_NVM" ];
 then
     export NVM_LAZY_LOAD=true
-    export NVM_DIR="$REPOS_DIR/nvm"
+    export NVM_DIR="$ZPLUGINSDIR/nvm"
     export NVM_AUTO_USE=true
     source "$ZSH_NVM"
 else
@@ -68,6 +67,7 @@ fi
 # Starship
 if [ -x "$(command -v starship)" ];
 then
+    export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
     eval "$(starship init zsh)"
 else
     echo "\nRecommendation: Install Starship"

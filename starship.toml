@@ -1,0 +1,15 @@
+[directory]
+style = "cyan"
+
+[git_branch]
+style = "bright-white"
+
+[git_status]
+style = "yellow"
+
+[character]
+symbol = "◆"
+error_symbol = "◆"
+use_symbol_for_status = true
+style_success = "white"
+style_failure = "red"

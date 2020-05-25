@@ -1,6 +1,6 @@
 # dotfiles
 
-A selection of personal dotfiles designed for zsh on macOS Catalina and later.
+Dotfiles designed for zsh on macOS Catalina and later.
 
 ### Usage
 
@@ -17,5 +17,6 @@ If you're missing plugins, dependencies or recommended files then you'll be prom
 Current recommendations:
 
 - A `.personal` file for personal settings like Git config
-- [zsh-nvm](https://github.com/lukechilds/zsh-nvm)
-- [Starship](https://starship.rs)
+- [Starship](https://starship.rs) (Cross-shell prompt)
+- [zsh-nvm](https://github.com/lukechilds/zsh-nvm) (Adds Node and npm management via nvm)
+- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) (Fish-like autosuggestions)
