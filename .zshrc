@@ -50,28 +50,14 @@ else
     echo "      email = <github email>"
 fi
 
-ZPLUGINSDIR="$ZDOTDIR/.." # Directory where Git-based plugins should be cloned to
-
 # Autosuggestions
-AUTOSUGGESTIONS="$ZPLUGINSDIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+AUTOSUGGESTIONS="$ZDOTDIR/../zsh-autosuggestions/zsh-autosuggestions.zsh"
 if [ -f "$AUTOSUGGESTIONS" ];
 then
     export ZSH_AUTOSUGGEST_USE_ASYNC=true
     source "$AUTOSUGGESTIONS"
 else
     echo "\nRecommendation: Install zsh-autosuggestions at $AUTOSUGGESTIONS"
-fi
-
-# NVM
-ZSH_NVM="$ZPLUGINSDIR/zsh-nvm/zsh-nvm.plugin.zsh"
-if [ -f "$ZSH_NVM" ];
-then
-    export NVM_LAZY_LOAD=true
-    export NVM_DIR="$ZPLUGINSDIR/nvm"
-    export NVM_AUTO_USE=true
-    source "$ZSH_NVM"
-else
-    echo "\nRecommendation: Install zsh-nvm at $ZSH_NVM"
 fi
 
 # Starship

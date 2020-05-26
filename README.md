@@ -17,5 +17,4 @@ If you're missing plugins, dependencies or recommended files then you'll be prom
 - `.personal` file (for private settings)
 - `.gitconfig.personal` (for private Git settings, like username and email)
 - [Starship](https://starship.rs) (a fast cross-shell prompt)
-- [zsh-nvm](https://github.com/lukechilds/zsh-nvm) (adds Node and npm management)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) (Fish-like autosuggestions)
