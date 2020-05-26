@@ -14,9 +14,8 @@ ZDOTDIR=/path/to/this/repo
 
 If you're missing plugins, dependencies or recommended files then you'll be prompted to fix these when you open a new shell.
 
-Current recommendations:
-
-- A `.personal` file for personal settings like Git config
-- [Starship](https://starship.rs) (Cross-shell prompt)
-- [zsh-nvm](https://github.com/lukechilds/zsh-nvm) (Adds Node and npm management via nvm)
+- `.personal` file (for private settings)
+- `.gitconfig.personal` (for private Git settings, like username and email)
+- [Starship](https://starship.rs) (a fast cross-shell prompt)
+- [zsh-nvm](https://github.com/lukechilds/zsh-nvm) (adds Node and npm management)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) (Fish-like autosuggestions)

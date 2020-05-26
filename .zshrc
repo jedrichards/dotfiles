@@ -34,10 +34,20 @@ if [ -f "$PERSONAL" ];
 then
     source "$PERSONAL"
 else
-    echo "\nRecommendation: Create a personal file at $PERSONAL to contain any personal settings. Example contents:"
+    echo "\nRecommendation: Create a personal file at $PERSONAL to contain any personal settings."
+fi
+
+# Personal Git Config
+GITCONFIG_PERSONAL="$ZDOTDIR/.gitconfig.personal"
+if [ -f "$GITCONFIG_PERSONAL" ];
+then
+    ln -sf "$ZDOTDIR/.gitconfig.personal" "$HOME/.gitconfig.personal"
+else
+    echo "\nRecommendation: Create a personal .gitconfig at $GITCONFIG_PERSONAL to contain any personal settings. Example contents:"
     echo ""
-    echo "  git config --global user.name \"<github username>\""
-    echo "  git config --global user.email \"<github email>\""
+    echo "  [user]"
+    echo "      name = <github username>"
+    echo "      email = <github email>"
 fi
 
 ZPLUGINSDIR="$ZDOTDIR/.." # Directory where Git-based plugins should be cloned to

@@ -44,6 +44,5 @@
 	default = simple
 [diff]
 	renames = copies
-[user]
-	name = jedrichards
-	email = jedrichards@gmail.com
+[include]
+	path = ~/.gitconfig.personal
