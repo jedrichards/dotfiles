@@ -1,6 +1,11 @@
 # Aliases
 alias ls="ls -GlAhF"
 
+# Functions
+scriptz () {
+  jq '.scripts' package.json
+}
+
 # Symlink gitconfig
 ln -sf "$ZDOTDIR/.gitconfig" "$HOME/.gitconfig"
 
