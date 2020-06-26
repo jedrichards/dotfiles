@@ -5,12 +5,10 @@
 	l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%ae>%Creset' --abbrev-commit --show-linear-break=~
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-	# Fetch origin, and hard reset current branch to the remote version
+	# Hard reset current branch to the origin
 	rsc = !"git fetch origin -p && git reset --hard origin/$(git symbolic-ref --short -q HEAD)"
-	# Fetch origin, checkout develop and reset local develop to origin's develop
-	rsd = !"git fetch origin -p && git checkout develop && git reset --hard origin/develop"
-	# Fetch origin, checkout master and reset local master to origin's master
-	rsm = !"git fetch origin -p && git checkout master && git reset --hard origin/master"
+	# Hard reset the named branch to the origin
+	rs = !"f() { git fetch origin -p && git checkout \"$1\" && git reset --hard origin/\"$1\"; }; f"
 	# Amend the previous commit with all currently staged and unstaged changes
 	amend = !"git add -A && git commit --amend --no-edit"
 	# Update submodules
