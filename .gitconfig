@@ -17,6 +17,8 @@
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+	# Bump a branch with an empty commit to restart stalled CI etc.
+	bump = commit --allow-empty -m 'chore: empty commit'
 [core]
 	editor = nano
 	trustctime = false
