@@ -19,6 +19,8 @@
 	remotes = remote -v
 	# Bump a branch with an empty commit to restart stalled CI etc.
 	bump = commit --allow-empty -m 'chore: empty commit'
+	# Undo the last commit, keeping its changes
+	undo = reset HEAD~1
 [core]
 	editor = nano
 	trustctime = false
