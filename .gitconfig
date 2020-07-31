@@ -21,6 +21,10 @@
 	bump = commit --allow-empty -m 'chore: empty commit'
 	# Undo the last commit, keeping its changes
 	undo = reset HEAD~1
+	# Push the current branch to origin
+	pc = !"git push origin $(git symbolic-ref --short -q HEAD)"
+	# Force oush the current branch to origin
+	pcf = !"git push origin $(git symbolic-ref --short -q HEAD) --force"
 [core]
 	editor = nano
 	trustctime = false
