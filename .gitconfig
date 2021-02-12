@@ -23,8 +23,8 @@
 	undo = reset HEAD~1
 	# Push the current branch to origin
 	pc = !"git push origin $(git symbolic-ref --short -q HEAD)"
-	# Force oush the current branch to origin
-	pcf = !"git push origin $(git symbolic-ref --short -q HEAD) --force"
+	# Force push the current branch to origin
+	pcf = !"git push origin $(git symbolic-ref --short -q HEAD) --force-with-lease"
 [core]
 	editor = nano
 	trustctime = false
