@@ -8,8 +8,5 @@ style = "bright-white"
 style = "yellow"
 
 [character]
-symbol = "◆"
-error_symbol = "◆"
-use_symbol_for_status = true
-style_success = "white"
-style_failure = "red"
+success_symbol = "[◆](bold green)"
+error_symbol = "[◆](bold red)"
