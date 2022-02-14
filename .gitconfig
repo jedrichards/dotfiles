@@ -18,7 +18,7 @@
 	branches = branch -a
 	remotes = remote -v
 	# Bump a branch with an empty commit to restart stalled CI etc.
-	bump = commit --allow-empty -m 'chore: empty commit'
+	bump = commit --allow-empty -m 'Bump!'
 	# Undo the last commit, keeping its changes
 	undo = reset HEAD~1
 	# Push the current branch to origin
