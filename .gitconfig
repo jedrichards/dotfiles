@@ -52,3 +52,7 @@
 	renames = copies
 [include]
 	path = ~/.gitconfig.personal
+[http]
+    # Set a high postBuffer to avoid hands when pushing large files
+	# https://stackoverflow.com/a/68711337/1058314
+	postBuffer = 20000000
