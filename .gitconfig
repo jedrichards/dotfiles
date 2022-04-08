@@ -9,6 +9,8 @@
 	rsc = !"git fetch origin -p && git reset --hard origin/$(git symbolic-ref --short -q HEAD)"
 	# Hard reset the named branch to the origin
 	rs = !"f() { git fetch origin -p && git checkout \"$1\" && git reset --hard origin/\"$1\"; }; f"
+	# Rebase the current branch against the named origin branch
+	rb = !"f() { git fetch origin -p && git rebase origin/\"$1\"; }; f"
 	# Amend the previous commit with all currently staged and unstaged changes
 	amend = !"git add -A && git commit --amend --no-edit"
 	# Update submodules
@@ -18,7 +20,7 @@
 	branches = branch -a
 	remotes = remote -v
 	# Bump a branch with an empty commit to restart stalled CI etc.
-	bump = commit --allow-empty -m 'Bump!'
+	bump = commit --allow-empty -m 'Empty commit'
 	# Undo the last commit, keeping its changes
 	undo = reset HEAD~1
 	# Push the current branch to origin
