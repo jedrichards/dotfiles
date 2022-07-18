@@ -75,15 +75,11 @@ else
     echo "\nRecommendation: Install zsh-autosuggestions at $AUTOSUGGESTIONS"
 fi
 
-if [[ $(env | grep WARP_) ]]; then
-    IS_WARP=true
-else
-    IS_WARP=false
-fi
-
 # Only install Starship if we're not in the Warp terminal
-if [[ -x "$(command -v starship)" && $IS_WARP == "false" ]];
+if [[ -x "$(command -v starship)" ]];
 then
   export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
   eval "$(starship init zsh)"
+else
+    echo "\nRecommendation: Install Starship"
 fi
