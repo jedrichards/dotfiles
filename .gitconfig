@@ -27,6 +27,8 @@
 	pc = !"git push origin $(git symbolic-ref --short -q HEAD)"
 	# Force push the current branch to origin
 	pcf = !"git push origin $(git symbolic-ref --short -q HEAD) --force-with-lease"
+	# Nuke uncommited changes
+	nuke = !"git stash --include-untracked && git stash drop"
 [core]
 	editor = nano
 	trustctime = false
