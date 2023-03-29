@@ -14,7 +14,7 @@
 	# Amend the previous commit with all currently staged and unstaged changes
 	amend = !"git add -A && git commit --amend --no-edit"
 	# Update submodules
-	subs = !"git submodule sync --recursive && submodule update --init --recursive"
+	subs = !"git submodule sync --recursive && git submodule update --init --recursive"
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
