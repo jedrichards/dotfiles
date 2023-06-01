@@ -75,7 +75,6 @@ else
     echo "\nRecommendation: Install zsh-autosuggestions at $AUTOSUGGESTIONS"
 fi
 
-# Only install Starship if we're not in the Warp terminal
 if [[ -x "$(command -v starship)" ]];
 then
   export STARSHIP_CONFIG="$ZDOTDIR/starship.toml"
