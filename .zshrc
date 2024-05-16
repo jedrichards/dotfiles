@@ -6,10 +6,10 @@ scriptz () {
   jq '.scripts' package.json
 }
 
-# Open Chrome Canary with CORS disabled
-nocorscanary() {
+# Open Chrome with CORS disabled
+no_cors_chrome() {
   mkdir -p /tmp/nocorscanary
-  open -a Google\ Chrome\ Canary --args --disable-web-security --user-data-dir=/tmp/nocorscanary
+  open /Applications/Google\ Chrome.app --args --user-data-dir="/tmp/nocorscanary" --disable-web-security --disable-site-isolation-trials
 }
 
 # Symlink gitconfig

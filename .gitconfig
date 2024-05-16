@@ -29,6 +29,10 @@
 	pcf = !"git push origin $(git symbolic-ref --short -q HEAD) --force-with-lease"
 	# Nuke uncommited changes
 	nuke = !"git stash --include-untracked && git stash drop"
+	# Hard reset the named branch to the origin
+	nb = !"f() { git checkout -b \"$1\"; }; f"
+	# Add everything and commit
+	c = !"f() { git add -A && git commit -m \"$1\"; }; f"
 [core]
 	editor = nano
 	trustctime = false
