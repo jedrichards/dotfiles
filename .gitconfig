@@ -33,6 +33,12 @@
 	nb = !"f() { git checkout -b \"$1\"; }; f"
 	# Add everything and commit
 	c = !"f() { git add -A && git commit -m \"$1\"; }; f"
+	# Automatically add worktree named after the passed branch, in a sibling folder to the main
+	# checkout. If your branch is "feature/foo" and your main checkout folder is "repo-name", then
+	# you'll get a worktree checked out at "../repo-name-worktrees/feature-foo"
+	wta = !"f() { branch=\"${1//\\//-}\"; repo_name=$(basename \"$(git rev-parse --show-toplevel)\"); git worktree add \"$(git rev-parse --show-toplevel)/../${repo_name}-worktrees/$branch\" \"$1\"; }; f"
+	wtl = worktree list
+	wtr = worktree remove
 [core]
 	editor = nano
 	trustctime = false
