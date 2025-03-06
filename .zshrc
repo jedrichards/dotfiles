@@ -82,3 +82,6 @@ then
 else
     echo "\nRecommendation: Install Starship"
 fi
+
+# bun completions
+[ -s "/Users/jedrichards/.bun/_bun" ] && source "/Users/jedrichards/.bun/_bun"

@@ -2,15 +2,6 @@
 
 command_timeout = 3000
 
-[directory]
-style = "blue"
-
-[git_branch]
-style = "black"
-
-[git_status]
-style = "red"
-
 [character]
 success_symbol = "❯"
 error_symbol = "[⨯](bold red)"
