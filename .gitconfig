@@ -5,34 +5,56 @@
 	l = log --pretty=format:'%Cred%h%Creset %s %Cgreen(%cr) %C(bold blue)<%ae>%Creset' --abbrev-commit --show-linear-break=~
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
-	# Hard reset current branch to the origin
+
+	# Hard reset current branch to the HEAD of its origin version
+	# E.g. git rsc - resets the current branch to origin/{current_branch}
 	rsc = !"git fetch origin -p && git reset --hard origin/$(git symbolic-ref --short -q HEAD)"
-	# Hard reset the named branch to the origin
+
+	# Switches to and hard resets the named branch to the HEAD of its origin version
+	# E.g. git rs feat/foo - checks out feat/foo, and makes sure its up to date with origin/feat/foo
 	rs = !"f() { git fetch origin -p && git checkout \"$1\" && git reset --hard origin/\"$1\"; }; f"
+
 	# Rebase the current branch against the named origin branch
+	# E.g. git rb main - rebases the current branch again origin/main
 	rb = !"f() { git fetch origin -p && git rebase origin/\"$1\"; }; f"
+
 	# Amend the previous commit with all currently staged and unstaged changes
+	# The commit message of the last commit is preserved
 	amend = !"git add -A && git commit --amend --no-edit"
+
 	# Update submodules
 	subs = !"git submodule sync --recursive && git submodule update --init --recursive"
+
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
 	remotes = remote -v
+
 	# Bump a branch with an empty commit to restart stalled CI etc.
 	bump = commit --allow-empty -m 'Empty commit'
-	# Undo the last commit, keeping its changes
+
+	# Undo the last commit, it's changes become unstaged
 	undo = reset HEAD~1
+
 	# Push the current branch to origin
+	# E.g. git pc - pushes the current branch to origin/{current_branch}
 	pc = !"git push origin $(git symbolic-ref --short -q HEAD)"
+
 	# Force push the current branch to origin
+	# E.g. git pcf - force pushes the current branch to origin/{current_branch}
 	pcf = !"git push origin $(git symbolic-ref --short -q HEAD) --force-with-lease"
-	# Nuke uncommited changes
+
+	# Nuke all uncommited changes. Take care!
 	nuke = !"git stash --include-untracked && git stash drop"
-	# Hard reset the named branch to the origin
+
+	# Make a new branch and switch to it
+	# E.g. git nb feat/foo - creates a new branch feat/foo and switches to it
 	nb = !"f() { git checkout -b \"$1\"; }; f"
+
 	# Add everything and commit
-	c = !"f() { git add -A && git commit -m \"$1\"; }; f"
+	# E.g. git ca "My commit message" - adds all changes and commits them with the given message
+	ca = !"f() { git add -A && git commit -m \"$1\"; }; f"
+
 	# Automatically add worktree named after the passed branch, in a sibling folder to the main
 	# checkout. If your branch is "feature/foo" and your main checkout folder is "repo-name", then
 	# you'll get a worktree checked out at "../repo-name-worktrees/feature-foo"
@@ -67,6 +89,4 @@
 [include]
 	path = ~/.gitconfig.personal
 [http]
-    # Set a high postBuffer to avoid hands when pushing large files
-	# https://stackoverflow.com/a/68711337/1058314
 	postBuffer = 20000000
