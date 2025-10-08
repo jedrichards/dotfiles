@@ -8,15 +8,15 @@
 
 	# Hard reset current branch to the HEAD of its origin version
 	# E.g. git rsc - resets the current branch to origin/{current_branch}
-	rsc = !"git fetch origin -p && git reset --hard origin/$(git symbolic-ref --short -q HEAD)"
+	rsc = !"git fetch origin && git reset --hard origin/$(git symbolic-ref --short -q HEAD)"
 
 	# Switches to and hard resets the named branch to the HEAD of its origin version
 	# E.g. git rs feat/foo - checks out feat/foo, and makes sure its up to date with origin/feat/foo
-	rs = !"f() { git fetch origin -p && git checkout \"$1\" && git reset --hard origin/\"$1\"; }; f"
+	rs = !"f() { git fetch origin && git switch \"$1\" && git reset --hard origin/\"$1\"; }; f"
 
 	# Rebase the current branch against the named origin branch
 	# E.g. git rb main - rebases the current branch again origin/main
-	rb = !"f() { git fetch origin -p && git rebase origin/\"$1\"; }; f"
+	rb = !"f() { git fetch origin && git rebase origin/\"$1\"; }; f"
 
 	# Amend the previous commit with all currently staged and unstaged changes
 	# The commit message of the last commit is preserved
@@ -49,7 +49,7 @@
 
 	# Make a new branch and switch to it
 	# E.g. git nb feat/foo - creates a new branch feat/foo and switches to it
-	nb = !"f() { git checkout -b \"$1\"; }; f"
+	nb = !"f() { git switch -c \"$1\"; }; f"
 
 	# Add everything and commit
 	# E.g. git ca "My commit message" - adds all changes and commits them with the given message
@@ -61,6 +61,8 @@
 	wta = !"f() { branch=\"${1//\\//-}\"; repo_name=$(basename \"$(git rev-parse --show-toplevel)\"); git worktree add \"$(git rev-parse --show-toplevel)/../${repo_name}-worktrees/$branch\" \"$1\"; }; f"
 	wtl = worktree list
 	wtr = worktree remove
+[init]
+	defaultBranch = main
 [core]
 	editor = nano
 	trustctime = false
@@ -82,10 +84,16 @@
 	untracked = cyan
 [merge]
 	log = true
+[rebase]
+	autoStash = true
+	autoSquash = true
 [push]
 	default = simple
+	autoSetupRemote = true
 [diff]
 	renames = copies
+[fetch]
+	prune = true
 [include]
 	path = ~/.gitconfig.personal
 [http]
